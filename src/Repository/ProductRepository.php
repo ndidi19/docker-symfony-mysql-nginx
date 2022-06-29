@@ -99,4 +99,13 @@ class ProductRepository extends ServiceEntityRepository
 
         return $resultSet->fetchAllAssociative();
     }
+
+    public function getLastProducts(int $limit): array {
+        return $this->createQueryBuilder('p')
+           ->orderBy('p.createdAt', 'DESC')
+           ->setMaxResults($limit)
+           ->getQuery()
+           ->getResult()
+       ;
+    }
 }

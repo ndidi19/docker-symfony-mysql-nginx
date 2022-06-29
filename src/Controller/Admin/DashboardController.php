@@ -23,9 +23,12 @@ class DashboardController extends AbstractController
         $productCount = $productRepository->count([]);
         $orderCount = $orderRepository->count([]);
         $userCount = $userRepository->count([]);
+
+        $lastProducts = $productRepository->getLastProducts(5);
+        $lastCategories = $categoryRepository->getLastCategories(3);
         return $this->render(
             'admin/dashboard/index.html.twig',
-            compact('categoryCount', 'productCount', 'orderCount', 'userCount')
+            compact('categoryCount', 'productCount', 'orderCount', 'userCount', 'lastProducts', 'lastCategories')
         );
     }
 }

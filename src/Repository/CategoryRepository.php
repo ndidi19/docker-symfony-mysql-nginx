@@ -63,4 +63,13 @@ class CategoryRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getLastCategories(int $limit): array {
+        return $this->createQueryBuilder('c')
+        ->orderBy('c.id', 'DESC')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult()
+    ;
+    }
 }
