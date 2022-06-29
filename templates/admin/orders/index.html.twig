@@ -1,38 +1,49 @@
 
 {% extends "_layouts/_admin.html.twig"  %}
 
-{% block title %}Categories{% endblock %}
-{% block h1 %}Categories{% endblock %}
+{% block title %}Orders{% endblock %}
+{% block h1 %}Orders{% endblock %}
 
 {% block body %}
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
         </div>
+        {% if orders is empty %}
+        <div class="card-body text-center">
+            No orders found in DB...
+        </div>
+        {% else %}
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Parent category</th>
+                            <th>Id</th>
+                            <th>Reference</th>
+                            <th>User</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Parent category</th>
+                            <th>Id</th>
+                            <th>Reference</th>
+                            <th>User</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for category in categories %}
+                        {% for order in orders %}
                         <tr>
-                            <td>{{ category.name }}</td>
-                            <td>{{ category.parent.name|default('-') }}</td>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.reference }}</td>
+                            <td>{{ order.user.email }}</td>
+                            <td>{{ order.createdAt|date("d/m/Y H:i:s") }}</td>
                             <td>
                                 <a href="" class="btn btn-primary">Edit</a>
                                 <a href="" class="btn btn-danger">Delete</a>
@@ -43,5 +54,7 @@
                 </table>
             </div>
         </div>
+        {% endif %}
     </div>
+
 {% endblock %}

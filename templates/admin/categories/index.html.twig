@@ -1,47 +1,43 @@
 
 {% extends "_layouts/_admin.html.twig"  %}
 
-{% block title %}Products{% endblock %}
-{% block h1 %}Products{% endblock %}
+{% block title %}Categories{% endblock %}
+{% block h1 %}Categories{% endblock %}
 
 {% block body %}
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
         </div>
+        {% if orders is empty %}
+        <div class="card-body text-center">
+            No categories found in DB...
+        </div>
+        {% else %}
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Sold Price date</th>
-                            <th>Category</th>
+                            <th>Parent category</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Sold Price date</th>
-                            <th>Category</th>
+                            <th>Parent category</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for product in products %}
+                        {% for category in categories %}
                         <tr>
-                            <td>{{ product.name }}</td>
-                            <td>{{ product.price ~ ' €' }}</td>
-                            <td>{{ product.quantity }}</td>
-                            <td>{% if product.soldPrice %}{{ product.soldPrice }} €{% else %}-{% endif %}</td>
-                            <td>{{ product.category.name }}</td>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.parent.name|default('-') }}</td>
                             <td>
                                 <a href="" class="btn btn-primary">Edit</a>
                                 <a href="" class="btn btn-danger">Delete</a>
@@ -52,6 +48,6 @@
                 </table>
             </div>
         </div>
+        {% endif %}
     </div>
-
 {% endblock %}

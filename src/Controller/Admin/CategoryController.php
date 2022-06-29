@@ -7,13 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/category', name: 'admin_category_')]
+#[Route('/admin/categories', name: 'admin_categories_')]
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'index')]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
-        return $this->render('admin/category/index.html.twig', compact('categories'));
+        return $this->render('admin/categories/index.html.twig', compact('categories'));
     }
 }

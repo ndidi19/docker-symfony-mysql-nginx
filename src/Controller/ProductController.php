@@ -16,7 +16,7 @@ class ProductController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        return $this->render('product/index.html.twig', [
+        return $this->render('products/index.html.twig', [
             'controller_name' => 'ProductController',
         ]);
     }
@@ -25,6 +25,6 @@ class ProductController extends AbstractController
     public function details(Product $product): Response
     {
         $relatedProducts = $this->productRepository->findProductsInSameCategoryDql($product);
-        return $this->render('product/details.html.twig', compact('product', 'relatedProducts'));
+        return $this->render('products/details.html.twig', compact('product', 'relatedProducts'));
     }
 }
