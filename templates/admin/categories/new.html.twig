@@ -1,0 +1,10 @@
+{% extends "_layouts/_admin.html.twig"  %}
+
+{% block title %}Categories{% endblock %}
+{% block h1 %}Create new category{% endblock %}
+
+{% block body %}
+    <a href="{{ path('admin_categories_index') }}">Back to list</a>
+
+    {{ include('admin/categories/_form.html.twig') }}
+{% endblock %}
