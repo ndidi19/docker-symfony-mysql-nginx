@@ -11,7 +11,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
         </div>
-        {% if orders is empty %}
+        {% if categories is empty %}
         <div class="card-body text-center">
             No categories found in DB...
         </div>
@@ -39,7 +39,7 @@
                             <td>{{ category.name }}</td>
                             <td>{{ category.parent.name|default('-') }}</td>
                             <td>
-                                <a href="" class="btn btn-primary">Edit</a>
+                                <a href="" class="btn btn-warning">Edit</a>
                                 <a href="" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
